@@ -18,7 +18,7 @@ const defaultFormField = {
 const SignIn = () => {
   const [formField, setFormField] = useState(defaultFormField);
   //user context for storing user information globally
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  // const { currentUser, setCurrentUser } = useContext(UserContext);
   //destructuring
   const { email, password } = formField;
   //handle value from input form.
@@ -31,9 +31,7 @@ const SignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await signInWithEmail(email, password);
-      await createUserDocumentFromAuth(response.user);
-      setCurrentUser(response.user);
+      await signInWithEmail(email, password);
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         alert('Password is invalid');
@@ -45,8 +43,7 @@ const SignIn = () => {
   //sign in with google account
   const signInWithGoogle = async () => {
     try {
-      const response = await signInWithGooglePopup();
-      setCurrentUser(response.user);
+      await signInWithGooglePopup();
     } catch (error) {}
   };
 
