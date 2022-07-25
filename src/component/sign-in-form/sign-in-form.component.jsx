@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {
   signInWithEmail,
   signInWithGooglePopup,
@@ -6,6 +6,7 @@ import {
 } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
+import { UserContext } from '../../contexts/user-context/user-context.component';
 import './sign-in-form.styles.scss';
 
 //form field object
@@ -16,6 +17,8 @@ const defaultFormField = {
 //component
 const SignIn = () => {
   const [formField, setFormField] = useState(defaultFormField);
+  //user context for storing user information globally
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   //destructuring
   const { email, password } = formField;
   //handle value from input form.
@@ -29,7 +32,8 @@ const SignIn = () => {
     event.preventDefault();
     try {
       const response = await signInWithEmail(email, password);
-      console.log(response);
+      await createUserDocumentFromAuth(response.user);
+      setCurrentUser(response.user);
     } catch (error) {
       if (error.code === 'auth/wrong-password') {
         alert('Password is invalid');
@@ -42,8 +46,7 @@ const SignIn = () => {
   const signInWithGoogle = async () => {
     try {
       const response = await signInWithGooglePopup();
-      console.log(response);
-      await createUserDocumentFromAuth(response.user);
+      setCurrentUser(response.user);
     } catch (error) {}
   };
 
