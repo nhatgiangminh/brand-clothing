@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { UserProvider } from './contexts/user-context/user-context.component';
-import { ProductProvider } from './contexts/product-context/product-context.component';
-import { CartDropDownProvider } from './contexts/cart-dropdown-context/cart-dropdown-context.component';
+import { UserProvider } from './contexts/user-context.component';
+import { ProductProvider } from './contexts/product-context.component';
+import { CartDropDownProvider } from './contexts/cart-dropdown-context.component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

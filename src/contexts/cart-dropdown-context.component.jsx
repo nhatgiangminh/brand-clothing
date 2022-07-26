@@ -2,7 +2,7 @@ import { createContext, useState } from 'react';
 
 //add product to cart drop down
 export const CartDropDownContext = createContext({
-  currentCartDropDownState: true,
+  currentCartDropDownState: false,
   setCurrentCartDropDownState: () => null,
   currentProductInCart: [],
 });
@@ -10,10 +10,15 @@ export const CartDropDownContext = createContext({
 //Cart drop down provider
 export const CartDropDownProvider = ({ children }) => {
   const [currentCartDropDownState, setCurrentCartDropDownState] =
-    useState(true);
+    useState(false);
 
-  const [currentProductInCart, setCurrentProductInCart] = useState();
-  const value = { currentCartDropDownState, setCurrentCartDropDownState };
+  const [currentProductInCart, setCurrentProductInCart] = useState([]);
+  const value = {
+    currentCartDropDownState,
+    setCurrentCartDropDownState,
+    currentProductInCart,
+    setCurrentProductInCart,
+  };
   console.log(currentCartDropDownState);
   return (
     <CartDropDownContext.Provider value={value}>

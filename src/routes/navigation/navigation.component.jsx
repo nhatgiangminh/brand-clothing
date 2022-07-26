@@ -1,7 +1,7 @@
 import { Outlet, Link } from 'react-router-dom';
 import { ReactComponent as LOGO } from '../../assets/crown.svg';
 import { useContext } from 'react';
-import { UserContext } from '../../contexts/user-context/user-context.component';
+import { UserContext } from '../../contexts/user-context.component';
 import { logOut } from '../../utils/firebase/firebase.utils';
 import './navigation.styles.scss';
 import CartDropDown from '../../component/cart-dropdown/cart-dropdown.component';
