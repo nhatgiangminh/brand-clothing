@@ -4,6 +4,8 @@ import { useContext } from 'react';
 import { UserContext } from '../../contexts/user-context/user-context.component';
 import { logOut } from '../../utils/firebase/firebase.utils';
 import './navigation.styles.scss';
+import CartDropDown from '../../component/cart-dropdown/cart-dropdown.component';
+import CartIcon from '../../component/cart-icon/cart-icon.component';
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
@@ -29,7 +31,9 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
+        <CartDropDown />
       </div>
       <Outlet />
     </>

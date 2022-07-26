@@ -32,6 +32,7 @@ $hoverBlue: #2e78a6;
     background-color: white;
     color: black;
     &:hover {
+      cursor: pointer;
       background-color: black;
       color: white;
     }
