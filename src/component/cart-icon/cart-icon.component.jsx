@@ -4,8 +4,11 @@ import { useContext } from 'react';
 import { CartDropDownContext } from '../../contexts/cart-dropdown-context.component';
 
 const CartIcon = () => {
-  const { currentCartDropDownState, setCurrentCartDropDownState } =
-    useContext(CartDropDownContext);
+  const {
+    currentCartDropDownState,
+    setCurrentCartDropDownState,
+    currentCartItem,
+  } = useContext(CartDropDownContext);
   const toggleDropDown = () => {
     setCurrentCartDropDownState(!currentCartDropDownState);
   };
@@ -13,7 +16,7 @@ const CartIcon = () => {
   return (
     <div className='cart-icon-container'>
       <ShoppingIcon className='shopping-icon' onClick={toggleDropDown} />
-      <span className='cart-badge'>0</span>
+      <span className='cart-badge'>{currentCartItem.length}</span>
     </div>
   );
 };
