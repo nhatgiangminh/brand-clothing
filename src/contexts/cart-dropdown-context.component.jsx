@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 //cart context
 export const CartDropDownContext = createContext({
@@ -6,6 +6,7 @@ export const CartDropDownContext = createContext({
   setCurrentCartDropDownState: () => null,
   currentCartItem: [],
   setCurrentCartItem: () => null,
+  totalCost: null,
 });
 //add to cart function
 const addToCartHandle = (product, cartItems) => {
@@ -34,6 +35,14 @@ const removeCartItemHandle = (cartItem, currentCartItem) => {
     return cartItem.id === item.id ? false : true;
   });
 };
+//total cost function
+const totalCostHandle = (currentCartItem) => {
+  return currentCartItem
+    .reduce((total, item) => {
+      return (total += item.quantity * item.price);
+    }, 0)
+    .toFixed(2);
+};
 
 //Cart drop down provider component
 export const CartDropDownProvider = ({ children }) => {
@@ -42,6 +51,7 @@ export const CartDropDownProvider = ({ children }) => {
     useState(false);
   //list of item in cart
   const [currentCartItem, setCurrentCartItem] = useState([]);
+  const [totalCost, setTotalCost] = useState(0);
   //add to cart
   const addToCart = (productToAdd) => {
     setCurrentCartItem(addToCartHandle(productToAdd, currentCartItem));
@@ -52,6 +62,10 @@ export const CartDropDownProvider = ({ children }) => {
   //remove cart item
   const removeCartItem = (cartItem) =>
     setCurrentCartItem(removeCartItemHandle(cartItem, currentCartItem));
+  //total cost
+  useEffect(() => {
+    setTotalCost(totalCostHandle(currentCartItem));
+  }, [currentCartItem]);
   const value = {
     currentCartDropDownState,
     setCurrentCartDropDownState,
@@ -59,6 +73,7 @@ export const CartDropDownProvider = ({ children }) => {
     addToCart,
     quantityDecre,
     removeCartItem,
+    totalCost,
   };
 
   return (

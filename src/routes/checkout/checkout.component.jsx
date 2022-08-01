@@ -4,30 +4,30 @@ import { useContext } from 'react';
 import CheckoutItem from '../../component/checkout-item/checkout-item.component';
 
 const CheckOut = () => {
-  const { currentCartItem } = useContext(CartDropDownContext);
+  const { currentCartItem, totalCost } = useContext(CartDropDownContext);
 
   return (
-    <div className='checkout-container'>
-      <table className='checkout-table'>
-        <tr className='row'>
-          <th>Product</th>
-          <th>Description</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Remove</th>
-        </tr>
-        {currentCartItem.map((item) => {
-          return <CheckoutItem key={item.id} checkoutItem={item} />;
-        })}
-      </table>
-      <span className='total-text'>
-        TOTAL:{' '}
-        {currentCartItem.reduce((total, item) => {
-          return (total += item.quantity * item.price);
-        }, 0)}
-        $
-      </span>
-    </div>
+    <>
+      {currentCartItem.length === 0 ? (
+        <h1 style={{ textAlign: 'center' }}>OOPS you have no item in cart</h1>
+      ) : (
+        <div className='checkout-container'>
+          <table className='checkout-table'>
+            <tr className='row'>
+              <th>Product</th>
+              <th>Description</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Remove</th>
+            </tr>
+            {currentCartItem.map((item) => {
+              return <CheckoutItem key={item.id} checkoutItem={item} />;
+            })}
+          </table>
+          <span className='total-text'>TOTAL: {totalCost}$</span>
+        </div>
+      )}
+    </>
   );
 };
 export default CheckOut;
