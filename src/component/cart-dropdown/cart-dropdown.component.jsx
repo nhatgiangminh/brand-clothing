@@ -1,9 +1,12 @@
-import Button from '../button/button.component';
-import './cart-dropdown.styles.scss';
+import {
+  CartDropDownContainer,
+  CartItemContainer,
+} from './cart-dropdown.styles.js';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartDropDownContext } from '../../contexts/cart-dropdown-context.component';
 import CartItem from '../cart-item/cart-item.component';
+import { BUTTON_TYPES, Button } from '../button/button.component';
 
 const CartDropDown = () => {
   const {
@@ -22,14 +25,16 @@ const CartDropDown = () => {
   return (
     <>
       {currentCartDropDownState ? (
-        <div className='cart-dropdown-container'>
-          <div className='cart-items-container'>
+        <CartDropDownContainer>
+          <CartItemContainer>
             {currentCartItem.map((cart) => (
               <CartItem key={cart.id} cartItem={cart} />
             ))}
-          </div>
-          <Button onClick={navigateToCheckout}>GO TO CHECKOUT</Button>
-        </div>
+          </CartItemContainer>
+          <Button buttonType={BUTTON_TYPES.base} onClick={navigateToCheckout}>
+            GO TO CHECKOUT
+          </Button>
+        </CartDropDownContainer>
       ) : null}
     </>
   );

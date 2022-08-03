@@ -1,7 +1,6 @@
-import './checkout-item.styles.scss';
+import { CheckoutItemRow, RemoveSVG } from './checkout-item.styles';
 import { CartDropDownContext } from '../../contexts/cart-dropdown-context.component';
 import { useContext } from 'react';
-import { ReactComponent as RemoveSVG } from '../../assets/xmark-solid.svg';
 
 const CheckoutItem = ({ checkoutItem }) => {
   const { name, quantity, imageUrl, price } = checkoutItem;
@@ -13,7 +12,7 @@ const CheckoutItem = ({ checkoutItem }) => {
   const quantityDecreHandler = () => quantityDecre(checkoutItem);
   const removeItem = () => removeCartItem(checkoutItem);
   return (
-    <tr className='checkout-item-row'>
+    <CheckoutItemRow>
       <td>
         <img src={imageUrl} alt={name}></img>
       </td>
@@ -25,12 +24,12 @@ const CheckoutItem = ({ checkoutItem }) => {
       </td>
       <td>{price * quantity}$</td>
       <td>
-        <RemoveSVG className='icon-svg' onClick={removeItem} />
+        <RemoveSVG onClick={removeItem} />
       </td>
       {/* <td >add</td>
       <td >reduce</td>
       <td onClick={removeItem}>remove</td> */}
-    </tr>
+    </CheckoutItemRow>
   );
 };
 export default CheckoutItem;

@@ -1,4 +1,4 @@
-import Directory from '../../component/directory/directory.component'
+import Directory from '../../component/directory/directory.component';
 
 const Home = () => {
   const categories = [
@@ -29,9 +29,7 @@ const Home = () => {
     },
   ];
 
-  return (
-      <Directory categories={categories} />
-  );
+  return <Directory directories={categories} />;
 };
 
 export default Home;

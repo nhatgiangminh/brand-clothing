@@ -4,8 +4,8 @@ import {
   signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils';
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
-import './sign-in-form.styles.scss';
+import { Button, BUTTON_TYPES } from '../button/button.component';
+import { SignInButtonContainer, SignInContainer } from './sign-in-form.styles';
 
 //form field object
 const defaultFormField = {
@@ -46,7 +46,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className='sign-in-container'>
+    <SignInContainer>
       <h2>Sign In</h2>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -68,15 +68,18 @@ const SignIn = () => {
         />
 
         {/* <p style={{visibility: 'visible'}}>Password does not match</p> */}
-        <div className='sign-in-button-container'>
+        <SignInButtonContainer>
           <Button type='submit'> Log In </Button>
-          <Button type='button' buttonType='google' onClick={signInWithGoogle}>
+          <Button
+            type='button'
+            buttonType={BUTTON_TYPES.google}
+            onClick={signInWithGoogle}>
             {' '}
             Log in with Google{' '}
           </Button>
-        </div>
+        </SignInButtonContainer>
       </form>
-    </div>
+    </SignInContainer>
   );
 };
 export default SignIn;

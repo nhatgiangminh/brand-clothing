@@ -1,5 +1,5 @@
-import Button from '../button/button.component';
-import './product-card.styles.scss';
+import { Button, BUTTON_TYPES } from '../button/button.component';
+import { ProductCardContainer, ProductCardFooter } from './product-card.styles';
 import { CartDropDownContext } from '../../contexts/cart-dropdown-context.component';
 import { useContext } from 'react';
 
@@ -10,16 +10,16 @@ const ProductCard = ({ product }) => {
   const addToCartEvent = () => addToCart(product);
 
   return (
-    <div className='product-card-container' key={id}>
+    <ProductCardContainer key={id}>
       <img src={`${imageUrl}`} alt={`${name}`} />
-      <Button buttonType={'inverted'} onClick={addToCartEvent}>
+      <Button buttonType={BUTTON_TYPES.inverted} onClick={addToCartEvent}>
         ADD TO CART
       </Button>
-      <div className='footer'>
+      <ProductCardFooter>
         <p>{name}</p>
         <p>{price}</p>
-      </div>
-    </div>
+      </ProductCardFooter>
+    </ProductCardContainer>
   );
 };
 export default ProductCard;

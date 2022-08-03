@@ -1,4 +1,4 @@
-import './checkout.styles.scss';
+import { CheckoutContainer, CheckoutTable, TotalText } from './checkout.styles';
 import { CartDropDownContext } from '../../contexts/cart-dropdown-context.component';
 import { useContext } from 'react';
 import CheckoutItem from '../../component/checkout-item/checkout-item.component';
@@ -11,8 +11,8 @@ const CheckOut = () => {
       {currentCartItem.length === 0 ? (
         <h1 style={{ textAlign: 'center' }}>OOPS you have no item in cart</h1>
       ) : (
-        <div className='checkout-container'>
-          <table className='checkout-table'>
+        <CheckoutContainer>
+          <CheckoutTable>
             <tr className='row'>
               <th>Product</th>
               <th>Description</th>
@@ -23,9 +23,9 @@ const CheckOut = () => {
             {currentCartItem.map((item) => {
               return <CheckoutItem key={item.id} checkoutItem={item} />;
             })}
-          </table>
-          <span className='total-text'>TOTAL: {totalCost}$</span>
-        </div>
+          </CheckoutTable>
+          <TotalText>TOTAL: {totalCost}$</TotalText>
+        </CheckoutContainer>
       )}
     </>
   );

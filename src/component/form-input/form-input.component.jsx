@@ -1,11 +1,11 @@
-import './form-input.styles.scss'
+import { FormInputContainer, Input, Label } from './form-input.styles';
 
-const FormInput = ({labelName, ...props}) => {
-  return(
-    <div className="form-input-container">
-      <input className="form-input" {...props}></input>
-      <label className={`${props.value ? 'shrink' : ''} form-label-input`}>{labelName}</label>
-    </div>
-  )
-}
+const FormInput = ({ labelName, ...props }) => {
+  return (
+    <FormInputContainer>
+      <Input {...props}></Input>
+      <Label isShrink={props.value}>{labelName}</Label>
+    </FormInputContainer>
+  );
+};
 export default FormInput;
