@@ -14,7 +14,7 @@ const CartDropDown = () => {
     currentCartItem,
     setCurrentCartDropDownState,
   } = useContext(CartDropDownContext);
-  console.log(currentCartItem);
+
 
   const navigation = useNavigate();
   const navigateToCheckout = () => {
