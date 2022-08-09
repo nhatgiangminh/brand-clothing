@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext , useReducer,} from 'react';
 
 //cart context
 export const CartDropDownContext = createContext({
@@ -8,6 +8,25 @@ export const CartDropDownContext = createContext({
   setCurrentCartItem: () => null,
   totalCost: null,
 });
+
+const CART_REDUCER_TYPES = {
+  SET_CART_ITEM : 'SET_CART_ITEM',
+  SET_CART_DROPDOWN: 'SET_CART_DROPDOWN',
+}
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+  console.log('type',type);
+  switch(type) {
+    case 'SET_CART_ITEM' :
+      return {...state, ...payload};
+   case CART_REDUCER_TYPES.SET_CART_DROPDOWN :
+     return {...state, ...payload};
+    default:
+      throw new Error(`Unhandled type ${type} in cartReducer`);
+  };
+}
+
+
 //add to cart function
 const addToCartHandle = (product, cartItems) => {
   const existingCartItem = cartItems.find((item) => item.id === product.id);
@@ -43,29 +62,52 @@ const totalCostHandle = (currentCartItem) => {
     }, 0)
     .toFixed(2);
 };
-
+// initial state for cart reducer
+const INITIAL_STATE = {
+  currentCartDropDownState: false,
+  currentCartItem: [],
+  totalCost: null,
+};
 //Cart drop down provider component
 export const CartDropDownProvider = ({ children }) => {
-  //toggle cart dropdown state
-  const [currentCartDropDownState, setCurrentCartDropDownState] =
-    useState(false);
-  //list of item in cart
-  const [currentCartItem, setCurrentCartItem] = useState([]);
-  const [totalCost, setTotalCost] = useState(0);
+  const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
+
+  const {currentCartDropDownState, currentCartItem, totalCost} = state;
+
+  const setCartItems = (newCartItems) => {
+    const total = totalCostHandle(newCartItems);
+    dispatch({
+      type: 'SET_CART_ITEM', 
+      payload: {
+      currentCartItem: newCartItems,
+      totalCost: total,
+    }});
+  };
+  const setCurrentCartDropDownState = () => {
+    dispatch({type: CART_REDUCER_TYPES.SET_CART_DROPDOWN, payload: {
+      currentCartDropDownState: !currentCartDropDownState,
+    }})
+  }
+
+  
+
+
+
   //add to cart
   const addToCart = (productToAdd) => {
-    setCurrentCartItem(addToCartHandle(productToAdd, currentCartItem));
+    const newCartItems = addToCartHandle(productToAdd, currentCartItem);
+    setCartItems(newCartItems);
   };
   //decrease cart's quantity
-  const quantityDecre = (cartItem) =>
-    setCurrentCartItem(quantityDecreHandle(cartItem, currentCartItem));
+  const quantityDecre = (cartItem) => {
+    const newCartItems = quantityDecreHandle(cartItem, currentCartItem);
+    setCartItems(newCartItems);
+  }
   //remove cart item
-  const removeCartItem = (cartItem) =>
-    setCurrentCartItem(removeCartItemHandle(cartItem, currentCartItem));
-  //total cost
-  useEffect(() => {
-    setTotalCost(totalCostHandle(currentCartItem));
-  }, [currentCartItem]);
+  const removeCartItem = (cartItem) => {
+    const newCartItems = removeCartItemHandle(cartItem, currentCartItem);
+    setCartItems(newCartItems);
+  } 
   const value = {
     currentCartDropDownState,
     setCurrentCartDropDownState,
