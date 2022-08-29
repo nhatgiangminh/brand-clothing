@@ -1,7 +1,7 @@
 import { Outlet, Link } from 'react-router-dom';
 import { ReactComponent as LOGO } from '../../assets/crown.svg';
-import { useContext } from 'react';
-import { UserContext } from '../../contexts/user-context.component';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../store/user/user.selector';
 import { logOut } from '../../utils/firebase/firebase.utils';
 import CartDropDown from '../../component/cart-dropdown/cart-dropdown.component';
 import CartIcon from '../../component/cart-icon/cart-icon.component';
@@ -12,7 +12,7 @@ import {
 } from './navigation.styles.js';
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const signOut = async () => {
     await logOut();
   };
