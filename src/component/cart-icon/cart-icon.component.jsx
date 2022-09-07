@@ -3,22 +3,26 @@ import {
   ShoppingBadge,
   CartBadge,
 } from './cart-icon.styles.js';
-import { useContext } from 'react';
-import { CartDropDownContext } from '../../contexts/cart-dropdown-context.component';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {
+  selectCurrentCartItem,
+  selectCurrentCartDropDownState,
+} from '../../store/cart/cart.selector.js';
+import { setCurrentCartDropDownState } from '../../store/cart/cart.action.js';
 
 const CartIcon = () => {
-  const {
-    currentCartDropDownState,
-    setCurrentCartDropDownState,
-    currentCartItem,
-  } = useContext(CartDropDownContext);
+  const dispatch = useDispatch();
+  const currentCartItem = useSelector(selectCurrentCartItem);
+  const currentCartDropDownState = useSelector(selectCurrentCartDropDownState);
+
   const toggleDropDown = () => {
-    setCurrentCartDropDownState();
+    dispatch(setCurrentCartDropDownState(currentCartDropDownState));
   };
 
   return (
     <CartIconContainer>
-      <ShoppingBadge onClick={toggleDropDown}/>
+      <ShoppingBadge onClick={toggleDropDown} />
       <CartBadge>{currentCartItem && currentCartItem.length}</CartBadge>
     </CartIconContainer>
   );
