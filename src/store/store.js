@@ -13,7 +13,7 @@ const middleWare = [
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['user'],
+  whitelist: ['cart'],
 };
 //create persist reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
