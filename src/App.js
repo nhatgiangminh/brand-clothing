@@ -11,6 +11,7 @@ import {
 } from './utils/firebase/firebase.utils';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from './store/user/user.action';
+import Footer from './component/footer/footer.component';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,14 +25,17 @@ const App = () => {
     return unsubscribe;
   }, []);
   return (
-    <Routes>
-      <Route path='/' element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path='shop/*' element={<Shop />} />
-        <Route path='sign-in' element={<Authentication />} />
-        <Route path='check-out' element={<CheckOut />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path='/' element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path='shop/*' element={<Shop />} />
+          <Route path='sign-in' element={<Authentication />} />
+          <Route path='check-out' element={<CheckOut />} />
+        </Route>
+      </Routes>
+      <Footer />
+    </>
   );
 };
 
