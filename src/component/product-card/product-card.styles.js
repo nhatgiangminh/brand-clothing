@@ -8,6 +8,9 @@ export const ProductCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0px 10px;
+  @media (max-width: 600px) {
+    height: 200px;
+  }
 
   img {
     width: 100%;
@@ -18,6 +21,10 @@ export const ProductCardContainer = styled.div`
     visibility: hidden;
     top: 264px;
     width: 70%;
+    @media (max-width: 600px) {
+      top: 30%;
+      font-size: 12px;
+    }
   }
   &:hover {
     img {

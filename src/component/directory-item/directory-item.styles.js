@@ -19,6 +19,9 @@ export const DirectoryBodyContainer = styled.div`
   background-color: white;
   opacity: 0.7;
   position: absolute;
+  @media (max-width: 600px) {
+    width: 18%;
+  }
   h2 {
     font-weight: bold;
     margin: 0 6px 0;
@@ -43,7 +46,6 @@ export const DirectoryItemContainer = styled.div`
   border: 1px solid black;
   margin: 0 7.5px 15px;
   overflow: hidden;
-
   &:hover {
     cursor: pointer;
 

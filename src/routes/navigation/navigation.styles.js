@@ -22,6 +22,9 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   font-size: 20px;
   cursor: pointer;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 // .navigation {
 //   height: 70px;

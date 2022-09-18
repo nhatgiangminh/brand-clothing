@@ -8,6 +8,14 @@ export const CartItemContainer = styled.div`
     width: 40%;
     height: 105px;
   }
+  @media (max-width: 600px) {
+    padding: 5px 10px 10px 5px;
+    img {
+      height: 100%;
+      width: 45%;
+    }
+    font-size: 10px;
+  }
 `;
 export const CartInfo = styled.div`
   margin-left: 15px;

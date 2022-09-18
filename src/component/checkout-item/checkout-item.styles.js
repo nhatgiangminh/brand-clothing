@@ -23,6 +23,12 @@ export const CheckoutItemRow = styled.tr`
     margin: 0 10px 0 10px;
     cursor: pointer;
   }
+  @media (max-width: 600px) {
+    img {
+      height: 150px;
+      width: 60%;
+    }
+  }
 `;
 
 // .checkout-item-row {

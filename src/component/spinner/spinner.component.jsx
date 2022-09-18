@@ -1,9 +1,8 @@
-import { ReactComponent as SpinnerLoader } from '../../assets/Rolling.svg';
-import { SpinnerContainer } from './spinner.styles';
+import { SpinnerContainer, CircleProcessing } from './spinner.styles';
 
 const Spinner = () => (
   <SpinnerContainer>
-    <SpinnerLoader />
+    <CircleProcessing />
   </SpinnerContainer>
 );
 
