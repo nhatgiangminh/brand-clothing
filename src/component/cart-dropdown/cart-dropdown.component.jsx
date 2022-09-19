@@ -11,6 +11,7 @@ import {
   selectCurrentCartDropDownState,
 } from '../../store/cart/cart.selector.js';
 import { setCurrentCartDropDownState } from '../../store/cart/cart.action.js';
+import { useCallback } from 'react';
 
 const CartDropDown = () => {
   const dispatch = useDispatch();
@@ -18,19 +19,23 @@ const CartDropDown = () => {
   const currentCartDropDownState = useSelector(selectCurrentCartDropDownState);
 
   const navigation = useNavigate();
-  const navigateToCheckout = () => {
+  const navigateToCheckout = useCallback(() => {
     navigation('/check-out');
     dispatch(setCurrentCartDropDownState(!currentCartDropDownState));
-  };
+  }, [currentCartDropDownState]);
 
   return (
     <>
       {currentCartDropDownState ? (
         <CartDropDownContainer>
           <CartItemContainer>
-            {currentCartItem.map((cart) => (
-              <CartItem key={cart.id} cartItem={cart} />
-            ))}
+            {!currentCartItem ? (
+              <h3>YOUR CART IS EMPTY !</h3>
+            ) : (
+              currentCartItem.map((cart) => (
+                <CartItem key={cart.id} cartItem={cart} />
+              ))
+            )}
           </CartItemContainer>
           <Button buttonType={BUTTON_TYPES.base} onClick={navigateToCheckout}>
             GO TO CHECKOUT

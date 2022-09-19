@@ -1,0 +1,11 @@
+
+.carousel-container {
+  margin: 20px 0px 100px;
+  .image-container {
+    height: 70%;
+    object-fit: cover;
+  }
+  @media screen and (max-width: 600px) {
+    margin: 20px 0px 70px;
+  }
+}

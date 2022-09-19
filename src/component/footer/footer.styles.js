@@ -4,6 +4,10 @@ export const Container = styled.div`
   display: flex;
   margin-top: 100px;
   background-color: #ccc;
+  @media screen and (max-width: 600px) {
+    margin-top: 70px;
+    flex-direction: column;
+  }
 `;
 
 export const Left = styled.div`

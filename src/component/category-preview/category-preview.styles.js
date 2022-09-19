@@ -5,6 +5,10 @@ export const PreviewCategory = styled.div`
   width: 100%;
   height: auto;
   margin-bottom: 40px;
+  @media screen and (max-width: 600px) {
+    margin-bottom: 30px;
+    height: 30%;
+  }
 `;
 export const NavLink = styled(Link)`
   text-decoration: none;
@@ -20,7 +24,7 @@ export const NavLink = styled(Link)`
 export const ProductPreview = styled.div`
   margin-top: 20px;
   width: 100%;
-  height: 400px;
+  height: auto;
   display: flex;
 `;
 // .preview-container {

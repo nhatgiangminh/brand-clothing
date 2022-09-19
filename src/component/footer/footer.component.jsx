@@ -65,14 +65,13 @@ const Footer = () => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{ marginRight: '10px' }} /> Minh Hung, Chon Thanh, Binh
-          Phuoc
+          <Room style={{ marginRight: '10px' }} /> Binh Long, Binh Phuoc
         </ContactItem>
         <ContactItem>
           <Phone style={{ marginRight: '10px' }} /> +1 234 56 78
         </ContactItem>
         <ContactItem>
-          <MailOutline style={{ marginRight: '10px' }} /> 18520021@gm.uit.edu.vn
+          <MailOutline style={{ marginRight: '10px' }} /> nhatgm14@gmail.com
         </ContactItem>
         <Payment src='https://i.ibb.co/Qfvn4z6/payment.png' />
       </Right>
